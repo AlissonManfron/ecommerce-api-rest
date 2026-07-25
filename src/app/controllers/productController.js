@@ -52,6 +52,7 @@ function getRankProductsByCategory(products) {
   products.forEach((product) => {
     if (!productsByCategory[product.category_id]) {
       productsByCategory[product.category_id] = {
+        category_id: product.category_id,
         category_name: product.category_name,
         products: [],
       };

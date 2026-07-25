@@ -31,7 +31,6 @@ const rankeds = async (_, res) => {
   try{
     const products = await database.getRankeds(5);
     const productsBanner = await database.getRankeds(1);
-
     if (products) {
       return res.send({
         bannerProducts: Object.values(productsBanner),

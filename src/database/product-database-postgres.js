@@ -37,7 +37,19 @@ export default class ProductDatabasePostgres {
   }
 
   async findByCategoryId(id) {
-    const products = await sql`SELECT * FROM products WHERE category_id = ${id}`;
+    const products = await sql`
+      SELECT
+        p.id,
+        p.title,
+        p.description,
+        p.price,
+        p.imageUrl,
+        p.category_id,
+        c.name AS category_name
+      FROM products p
+      INNER JOIN categories c ON p.category_id = c.id
+      WHERE p.category_id = ${id};
+    `;
 
     if (products.length > 0) {
       return products;
